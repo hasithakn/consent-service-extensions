@@ -1,0 +1,11 @@
+{
+  "requestId": "minimal-test-001",
+  "data": {
+    "consentInitiationData": {
+      "type": "accounts",
+      "status": "AwaitingAuthorisation",
+      "requestPayload": {}
+    },
+    "requestHeaders": {}
+  }
+}

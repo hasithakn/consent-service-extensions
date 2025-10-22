@@ -1,0 +1,87 @@
+{
+  "requestId": "full-params-test-001",
+  "data": {
+    "consentInitiationData": {
+      "type": "accounts",
+      "status": "AwaitingAuthorisation",
+      "validityTime": 86400,
+      "recurringIndicator": true,
+      "frequency": 10,
+      "dataAccessValidityDuration": 172800,
+      "requestPayload": {
+        "Data": {
+          "Permissions": [
+            "ReadAccountsBasic",
+            "ReadAccountsDetail",
+            "ReadBalances",
+            "ReadBeneficiariesBasic",
+            "ReadBeneficiariesDetail",
+            "ReadDirectDebits",
+            "ReadStandingOrdersBasic",
+            "ReadStandingOrdersDetail",
+            "ReadTransactionsBasic",
+            "ReadTransactionsDetail",
+            "ReadTransactionsCredits",
+            "ReadTransactionsDebits"
+          ],
+          "ExpirationDateTime": "2025-12-31T23:59:59.000Z",
+          "TransactionFromDateTime": "2025-01-01T00:00:00.000Z",
+          "TransactionToDateTime": "2025-12-31T23:59:59.000Z"
+        },
+        "Risk": {
+          "PaymentContextCode": "PartyToParty"
+        }
+      },
+      "attributes": {
+        "consentType": "recurring",
+        "maxFrequencyPerDay": "10",
+        "accountTypes": ["current", "savings"],
+        "customerType": "retail",
+        "channel": "online_banking",
+        "ipAddress": "192.168.1.100",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+        "deviceId": "device-12345",
+        "sessionId": "session-67890",
+        "consentPurpose": "account_aggregation",
+        "thirdPartyName": "Financial App Ltd",
+        "thirdPartyId": "TPP-001",
+        "regulatoryRegion": "UK"
+      },
+      "authorizations": [
+        {
+          "userId": "user001@example.com",
+          "type": "authorisation",
+          "status": "created",
+          "resource": {
+            "authMethod": "SMS",
+            "authLevel": "SCA",
+            "mobileNumber": "+44-7700-900000",
+            "timestamp": "2025-10-23T10:30:00Z"
+          }
+        },
+        {
+          "userId": "user002@example.com",
+          "type": "co-authorisation",
+          "status": "pending",
+          "resource": {
+            "authMethod": "biometric",
+            "authLevel": "SCA",
+            "timestamp": "2025-10-23T10:31:00Z"
+          }
+        }
+      ]
+    },
+    "requestHeaders": {
+      "x-fapi-financial-id": "bank-123",
+      "x-fapi-interaction-id": "full-test-interaction-456",
+      "x-fapi-auth-date": "Wed, 23 Oct 2025 10:30:00 GMT",
+      "x-fapi-customer-ip-address": "192.168.1.100",
+      "x-customer-user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+      "x-idempotency-key": "idempotency-full-test-123",
+      "x-request-id": "request-full-test-456",
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    }
+  }
+}

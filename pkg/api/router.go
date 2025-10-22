@@ -20,11 +20,12 @@ func NewRouter() *mux.Router {
 
 	// Consent endpoints
 	api.HandleFunc("/pre-process-consent-creation", consentHandler.PreProcessConsentCreation).Methods(http.MethodPost)
+	api.HandleFunc("/pre-process-consent-update", consentHandler.PreProcessConsentUpdate).Methods(http.MethodPost)
 
 	// TODO: Add more endpoints as needed:
 	// api.HandleFunc("/enrich-consent-creation-response", consentHandler.EnrichConsentCreationResponse).Methods(http.MethodPost)
 	// api.HandleFunc("/pre-process-consent-retrieval", consentHandler.PreProcessConsentRetrieval).Methods(http.MethodPost)
-	// api.HandleFunc("/pre-process-consent-update", consentHandler.PreProcessConsentUpdate).Methods(http.MethodPost)
+	// api.HandleFunc("/enrich-consent-update-response", consentHandler.EnrichConsentUpdateResponse).Methods(http.MethodPost)
 	// api.HandleFunc("/enrich-consent-update-response", consentHandler.EnrichConsentUpdateResponse).Methods(http.MethodPost)
 	// api.HandleFunc("/pre-process-consent-revoke", consentHandler.PreProcessConsentRevoke).Methods(http.MethodPost)
 	// api.HandleFunc("/pre-process-consent-file-upload", consentHandler.PreProcessConsentFileUpload).Methods(http.MethodPost)

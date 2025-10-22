@@ -6,8 +6,20 @@ type PreProcessConsentCreationRequest struct {
 	Data      Request `json:"data"`
 }
 
+// PreProcessConsentUpdateRequest represents the request body for pre-process-consent-update
+type PreProcessConsentUpdateRequest struct {
+	RequestID string        `json:"requestId"`
+	Data      UpdateRequest `json:"data"`
+}
+
 // Request represents the data section of the request
 type Request struct {
+	ConsentInitiationData DetailedConsentResourceData `json:"consentInitiationData"`
+	RequestHeaders        map[string]interface{}      `json:"requestHeaders"`
+}
+
+// UpdateRequest represents the data section of the update request
+type UpdateRequest struct {
 	ConsentInitiationData DetailedConsentResourceData `json:"consentInitiationData"`
 	RequestHeaders        map[string]interface{}      `json:"requestHeaders"`
 }
@@ -35,8 +47,8 @@ type ConsentAuthorizationCreatePayload struct {
 
 // SuccessResponsePreProcessConsentCreation represents the success response
 type SuccessResponsePreProcessConsentCreation struct {
-	ResponseID string                             `json:"responseId"`
-	Status     string                             `json:"status"`
+	ResponseID string                                 `json:"responseId"`
+	Status     string                                 `json:"status"`
 	Data       SuccessResponseWithDetailedConsentData `json:"data"`
 }
 

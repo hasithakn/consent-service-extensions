@@ -2,6 +2,8 @@
 
 A Go web server implementing the Consent Management Service Extensions API based on the OpenAPI 3.0 specification.
 
+> 📋 **See [STRUCTURE.md](STRUCTURE.md) for detailed project structure and organization**
+
 ## 📁 Project Structure
 
 ```
@@ -42,33 +44,44 @@ consent-service-extensions/
 
 ## 🚀 Getting Started
 
+### Quick Start
+
+1. **Clone and navigate to the project:**
+   ```bash
+   cd consent-service-extensions
+   go mod download
+   ```
+
+2. **Start the server:**
+   ```bash
+   go run cmd/server/main.go
+   ```
+   Server starts on `http://localhost:8080`
+
+3. **Test the API** (in another terminal):
+   ```bash
+   # Health check
+   curl http://localhost:8080/health
+   
+   # Test consent creation
+   curl -X POST http://localhost:8080/api/services/pre-process-consent-creation 
+     -H "Content-Type: application/json" 
+     -d @docs/examples/basic-account-consent.json
+   ```
+
+4. **Run integration tests** (server must be running):
+   ```bash
+   go test ./test/integration/... -v
+   ```
+
 ### Prerequisites
 
 - Go 1.21 or higher
-- Make (optional, for using Makefile commands)
-
-### Installation
-
-1. Clone the repository and navigate to the project directory:
-```bash
-cd consent-service-extensions
-```
-
-2. Install dependencies:
-```bash
-go mod download
-```
 
 ### Running the Server
 
-**Using Go:**
 ```bash
 go run cmd/server/main.go
-```
-
-**Using Make:**
-```bash
-make run
 ```
 
 **With custom port:**
@@ -80,14 +93,8 @@ The server will start on `http://localhost:8080` (or your specified port)
 
 ### Building the Binary
 
-**Using Go:**
 ```bash
 go build -o bin/server cmd/server/main.go
-```
-
-**Using Make:**
-```bash
-make build
 ```
 
 Then run:
@@ -97,38 +104,43 @@ Then run:
 
 ## 🧪 Testing
 
-### Run all tests:
+### Run Integration Tests
+
+**Important:** Start the server first in a separate terminal:
 ```bash
-go test ./...
+go run cmd/server/main.go
 ```
 
-### Run tests with coverage:
+Then run the integration tests:
 ```bash
-go test -cover ./...
+go test ./test/integration/... -v
 ```
 
-### Run tests with verbose output:
+### Run All Tests
+
 ```bash
-go test -v ./...
+go test ./... -v
 ```
 
-### Generate coverage report:
+### Run Tests with Coverage
+
 ```bash
 go test -coverprofile=coverage.out ./...
 go tool cover -html=coverage.out -o coverage.html
 open coverage.html
 ```
 
-### Using Make:
+### Run Specific Test
+
 ```bash
-make test
-make test-coverage
+go test ./test/integration/... -v -run TestHealthEndpoint
+go test ./test/integration/... -v -run TestPreProcessConsentCreation_BasicAccountConsent
 ```
 
-### Test a specific package:
+### Test with Custom Server URL
+
 ```bash
-go test ./test/handlers/...
-go test ./test/api/...
+TEST_BASE_URL=http://localhost:9090 go test ./test/integration/... -v
 ```
 
 ## 📡 API Endpoints
@@ -252,15 +264,29 @@ curl -X POST http://localhost:8080/api/services/pre-process-consent-creation \
 |----------|-------------|---------|
 | `PORT` | Server port | `8080` |
 
-## 🔧 Available Make Commands
+## 🔧 Development Commands
 
 ```bash
-make build          # Build the application
-make run            # Run the application
-make test           # Run tests
-make test-coverage  # Run tests with coverage report
-make clean          # Clean build artifacts
-make help           # Show available commands
+# Build the application
+go build -o bin/server cmd/server/main.go
+
+# Run the application
+go run cmd/server/main.go
+
+# Run tests (requires server to be running)
+go test ./test/integration/... -v
+
+# Run tests with coverage
+go test -coverprofile=coverage.out ./...
+
+# Format code
+go fmt ./...
+
+# Vet code
+go vet ./...
+
+# Tidy dependencies
+go mod tidy
 ```
 
 ## 📖 API Documentation
