@@ -1,0 +1,27 @@
+{
+  "requestId": "req-001",
+  "data": {
+    "consentInitiationData": {
+      "type": "accounts",
+      "status": "AwaitingAuthorisation",
+      "validityTime": 0,
+      "recurringIndicator": false,
+      "frequency": 0,
+      "dataAccessValidityDuration": 86400,
+      "requestPayload": {
+        "Data": {
+          "Permissions": [
+            "ReadAccountsBasic",
+            "ReadAccountsDetail",
+            "ReadBalances"
+          ]
+        }
+      },
+      "attributes": {}
+    },
+    "requestHeaders": {
+      "x-fapi-financial-id": "bank-123",
+      "x-fapi-interaction-id": "interaction-456"
+    }
+  }
+}
