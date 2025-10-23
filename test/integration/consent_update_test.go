@@ -184,7 +184,7 @@ func TestPreProcessConsentUpdate_NoPermissionsField(t *testing.T) {
 		t.Fatalf("Failed to decode response: %v", err)
 	}
 
-	if response.Data.ResolvedConsentPurposes != nil && len(response.Data.ResolvedConsentPurposes) != 0 {
+	if len(response.Data.ResolvedConsentPurposes) != 0 {
 		t.Errorf("Expected nil or empty purposes, got %v", response.Data.ResolvedConsentPurposes)
 	}
 }
